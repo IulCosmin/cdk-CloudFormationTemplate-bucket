@@ -47,9 +47,8 @@ bucket = s3.Bucket(self,
     "MyFirstBucket", 
     versioned=True,)
 ```
-**
-Step4**
-I changed into the previous directory(in order not to specify the app when i synth) and then I synthetised a cf template from the app which i just built with the following:
+**Step4**
+- I changed into the previous directory(in order not to specify the app when i synth) and then I synthetised a cf template from the app which i just built with the following:
 
 ```
 cd ..
@@ -80,13 +79,13 @@ Conditions:
 ```
 
 **Step5**
-In the last step, I deployed the stack using the synthetised yaml template.
+- In the last step, I deployed the stack using the synthetised yaml template.
 
 ```
 cdk deploy
 ```
 
-In the end, I checked if the stack and the bucket were working from the AWS console.
+- In the end, I checked if the stack and the bucket were working from the AWS console.
 
 ****
 All the info was taken from the AWS CDK documentation https://docs.aws.amazon.com/cdk/latest/guide/hello_world.html
