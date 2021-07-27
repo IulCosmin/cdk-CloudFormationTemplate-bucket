@@ -31,8 +31,8 @@ The output should be something containing the name of the created stack, in my c
 
 
 **Step3**
--I began with adding a S3-bucket to the app which I created.
--I used the following command in order to install the S3 aws package:
+- I began with adding a S3-bucket to the app which I created.
+- I used the following command in order to install the S3 aws package:
 
 ```
 pip install aws-cdk.aws-s3
@@ -49,3 +49,44 @@ bucket = s3.Bucket(self,
 ```
 **
 Step4**
+I changed into the previous directory(in order not to specify the app when i synth) and then I synthetised a cf template from the app which i just built with the following:
+
+```
+cd ..
+cdk synth
+```
+
+Everything was done corectly because the output of this command was a cf template in yaml.
+```
+Resources:
+  MyFirstBucketB8884501:
+    Type: AWS::S3::Bucket
+    Properties:
+      VersioningConfiguration:
+        Status: Enabled
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: EndavaCdkStack/MyFirstBucket/Resource
+  CDKMetadata:
+    Type: AWS::CDK::Metadata
+    Properties:
+      Analytics: v2:deflate64:H4sIAAAAAAAAAyWLQQqDMBBFz+I+jgYRuiz1AsWeQMYpTUNnIDNBSsjdW3X1Hrz/PXg/Qt9cl01bXGNXUBJBediC0U3CaimjuenJM6nkhLT7P6zBgnB1+1EHKLeMkY7habW6+9dewt0AF/B989YQ2pTZwodgPvkDCU06t38AAAA=
+    Metadata:
+      aws:cdk:path: EndavaCdkStack/CDKMetadata/Default
+    Condition: CDKMetadataAvailable
+Conditions:
+  CDKMetadataAvailable ......
+```
+
+**Step5**
+In the last step, I deployed the stack using the synthetised yaml template.
+
+```
+cdk deploy
+```
+
+In the end, I checked if the stack and the bucket were working from the AWS console.
+
+****
+All the info was taken from the AWS CDK documentation https://docs.aws.amazon.com/cdk/latest/guide/hello_world.html
